@@ -1,0 +1,7 @@
+node_modules
+node_modules/
+**/node_modules/*
+!**/node_modules/node-dht-sensor-chip/
+
+**/config/database.js
+
