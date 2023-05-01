@@ -96,6 +96,48 @@ app.get('/productCategory', (req, res) => {
     })
 });
 
+app.get('/product/id/:id', (req, res) => {
+    let sql = `SELECT * FROM products WHERE id = ${req.params.id} `;
+    db.query(sql, (err, result) => {
+        if(err) throw err
+        res.send(result)
+    })
+});
+
+app.get('/productDesc', (req, res) => {
+    let sql = 'SELECT * FROM products ORDER BY id DESC';
+    db.query(sql, (err, result) => {
+        db.query(sql, (err, result) => {
+            if(err) throw err
+            res.send(result)
+        })
+    })
+});
+
+app.get('/category/id/:id', (req, res) => {
+    let sql = `SELECT * FROM categories WHERE id = ${req.params.id}`;
+    db.query(sql, (err, result) => {
+        if(err) throw err
+        res.send(result)
+    })
+});
+
+app.get('/product/name/:name_product', (req, res) => {
+    let sql = `SELECT * FROM products WHERE name_product LIKE '${req.params.name_product}'`;
+    db.query(sql, (err, result) => {
+        if(err) throw err
+        res.send(result)
+    })
+});
+
+app.delete('/product/id/:id', (req, res) => {
+    let sql = `DELETE FROM products WHERE id = ${req.params.id}`;
+    db.query(sql, (err, result) => {
+        if(err) throw err
+        res.send('Product deleted')
+    })
+});
+
 app.listen('3000', () => {
     console.log('Puerto abierto')
 });
